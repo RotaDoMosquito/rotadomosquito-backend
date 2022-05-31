@@ -2,6 +2,7 @@ package edu.utfpr.rotamosquito.service;
 
 import edu.utfpr.rotamosquito.orm.Dados;
 import edu.utfpr.rotamosquito.repository.DadosRepository;
+import edu.utfpr.rotamosquito.service.google.GoogleGeocodingService;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -19,10 +20,12 @@ import java.util.Date;
 public class DadosService {
 
     private final DadosRepository dadosRepository;
+    private final GoogleGeocodingService googleGeocodingService;
 
     @Autowired
-    public DadosService(DadosRepository dadosRepository) {
+    public DadosService(DadosRepository dadosRepository, GoogleGeocodingService googleGeocodingService) {
         this.dadosRepository = dadosRepository;
+        this.googleGeocodingService = googleGeocodingService;
     }
 
     public void carregarArquivo(MultipartFile multipartFile) {
@@ -54,6 +57,7 @@ public class DadosService {
 
             if (data != null && situacao != null){
                 final Dados dados = new Dados(data, endereco, situacao);
+                googleGeocodingService.definirCoodernadas(dados);
                 dadosRepository.save(dados);
             }
         }

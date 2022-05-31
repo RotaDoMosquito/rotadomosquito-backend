@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(path = "/dados")
 public class DadosController {
 
-    private DadosService dadosService;
+    private final DadosService dadosService;
 
     @Autowired
     public DadosController(DadosService dadosService) {

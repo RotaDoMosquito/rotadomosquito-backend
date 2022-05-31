@@ -20,8 +20,8 @@ public class Dados implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_dado")
     private Long idDado;
 
-    @Column(name = "dt_dado", nullable = false, updatable = false)
-    private LocalDate dtDado;
+    @Column(name = "dt_importacao", nullable = false, updatable = false)
+    private LocalDate dtImportacao;
 
     @Column(name = "ds_endereco", nullable = false, updatable = false, length = 500)
     private String dsEndereco;
@@ -30,8 +30,14 @@ public class Dados implements Serializable {
     @Column(name = "fg_situacao", nullable = false, updatable = false)
     private Situacao fgSituacao;
 
-    public Dados(LocalDate dtDado, String dsEndereco, String fgSituacao) {
-        this.dtDado = dtDado;
+    @Column(name = "ds_latitude", updatable = false, length = 100)
+    private String dsLatitude;
+
+    @Column(name = "ds_longitude", length = 100)
+    private String dsLongitude;
+
+    public Dados(LocalDate dtImportacao, String dsEndereco, String fgSituacao) {
+        this.dtImportacao = dtImportacao;
         this.dsEndereco = dsEndereco;
         this.fgSituacao = fgSituacao.toLowerCase().startsWith("positivo")?
                 Situacao.POSITIVO : Situacao.NEGATIVO;
