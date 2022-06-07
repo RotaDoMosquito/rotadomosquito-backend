@@ -1,14 +1,21 @@
 package edu.utfpr.rotamosquito.dto.google;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class GeocodingResponseDTO {
 
-    private String status;
+    @JsonProperty("display_name")
+    private String displayName;
 
-    private List<GeocodingResultDTO> results;
+    @JsonProperty("lat")
+    private String lat;
+
+    @JsonProperty("lon")
+    private String lon;
+
+    @JsonProperty("address")
+    private GeocodingResponseDetailDTO address;
 
 }

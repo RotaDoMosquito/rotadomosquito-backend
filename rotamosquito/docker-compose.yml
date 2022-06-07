@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+    vc-postgres:
+      container_name: rm-postgres
+      image: postgresql:latest
+      ports:
+        - "5432:5432"
+      networks:
+        - rm-network
+
+    rm-backend:
+      container_name: rm-backend
+      image: rotamosquito:latest
+      ports:
+        - "8080:8080"
+      networks:
+        - rm-network
+
+networks:
+  rm-network:
+    name: rm-network
+    driver: bridge

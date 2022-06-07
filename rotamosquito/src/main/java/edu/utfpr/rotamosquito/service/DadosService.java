@@ -1,5 +1,6 @@
 package edu.utfpr.rotamosquito.service;
 
+import edu.utfpr.rotamosquito.dto.DadosResultDTO;
 import edu.utfpr.rotamosquito.orm.Dados;
 import edu.utfpr.rotamosquito.repository.DadosRepository;
 import edu.utfpr.rotamosquito.service.google.GoogleGeocodingService;
@@ -26,6 +27,12 @@ public class DadosService {
     public DadosService(DadosRepository dadosRepository, GoogleGeocodingService googleGeocodingService) {
         this.dadosRepository = dadosRepository;
         this.googleGeocodingService = googleGeocodingService;
+    }
+
+    public DadosResultDTO carregarDadosMapa(String dsCidade){
+        DadosResultDTO dados = googleGeocodingService.buscarEndereco(dsCidade);
+        dados.setListDados(dadosRepository.carregarDadosMapa());
+        return dados;
     }
 
     public void carregarArquivo(MultipartFile multipartFile) {
