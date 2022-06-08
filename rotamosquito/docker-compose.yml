@@ -18,6 +18,10 @@ services:
         - "8080:8080"
       networks:
         - rm-network
+      environment:
+        DATABASE_URL: 'rm-postgres:5432/rotamosquito'
+        DATABASE_USER: 'postgres'
+        DATABASE_PASS: '123'
 
 networks:
   rm-network:
