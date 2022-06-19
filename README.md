@@ -9,6 +9,9 @@ com 3 parametros DATABASE_URL, DATABASE_USER, DATABASE_PASS, isso são variaveis
 de outras maneiras tambem. Como o ddl-auto=update esta ativo, basta criar o banco de dados da informado na url, que aplicacao trata de 
 criar as tabelas e sequences necessarias.
 - Ao rodar o projeto, é possivel acessar a url http://localhost:8080/swagger-ui que possui a documentação do projeto
+- Também foi feito um Container Docker para facilitar a instalação.
+- Qualquer dúvida, entrem em contato com o Luiz pelo número: 46 9905-2367
+
 
 ----------------------------------------------------------------
 
