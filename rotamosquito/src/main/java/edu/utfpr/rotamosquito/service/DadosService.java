@@ -105,15 +105,25 @@ public class DadosService {
             Date date = null;
             if (cell.getCellType().equals(CellType.STRING)){
             	String[] str = cell.getStringCellValue().split("/");
-            	Integer valor = null;
+            	Integer mes = null;
+            	Integer ano = null;
             	try {
-            		valor = new Integer(str[1].substring(0,2));
+            		mes = new Integer(str[1].substring(0,2));
+            		if(str[1].length()>2) {
+            			ano = new Integer(str[1].substring(2,4));
+            		}
             	}catch (Exception e) {
-            		valor = LocalDate.now().getMonthValue() ;
+            		mes = LocalDate.now().getMonthValue() ;
 				}
+            	if(ano == null)
+	            	try {
+	            		ano = new Integer(str[2].substring(0,4));
+	            	}catch (Exception e) {
+	            		ano = LocalDate.now().getYear() ;
+					}            	
             	try {
             		
-                    date = new Date(LocalDate.now().getYear(),valor, new Integer(str[0])) ;
+                    date = new Date(ano,mes, new Integer(str[0])) ;
             	}catch(Exception ex) {
             		System.out.println(cell.getStringCellValue());
             	}
