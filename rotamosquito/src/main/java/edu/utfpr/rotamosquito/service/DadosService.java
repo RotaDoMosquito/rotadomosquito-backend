@@ -65,9 +65,21 @@ public class DadosService {
             if (data != null && situacao != null){
                 final Dados dados = new Dados(data, endereco, situacao);
                 googleGeocodingService.definirCoodernadas(dados);
-                dadosRepository.save(dados);
+                if(!verificarDados(dados)) {
+                    dadosRepository.save(dados);                	
+                }
+
             }
         }
+    }
+    
+    /*
+     * Verificar se não existe essa data e latitude e longitude nesse
+     * Se exister é true
+     * Se não é false
+     */
+    private Boolean verificarDados(Dados dados) {
+    	return dadosRepository.carregarDadosMapaFilter(dados.getDsLongitude(), dados.getDsLatitude(), dados.getDtImportacao()).size()>0;
     }
 
     private String loadString(Cell cell){

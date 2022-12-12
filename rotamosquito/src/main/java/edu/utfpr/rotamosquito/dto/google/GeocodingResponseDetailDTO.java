@@ -9,4 +9,13 @@ public class GeocodingResponseDetailDTO {
     @JsonProperty("town")
     private String town;
 
+	public String getTown() {
+		return town;
+	}
+
+	public void setTown(String town) {
+		this.town = town;
+	}
+
+    
 }

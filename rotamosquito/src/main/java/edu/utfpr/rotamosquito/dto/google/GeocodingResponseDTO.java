@@ -18,4 +18,38 @@ public class GeocodingResponseDTO {
     @JsonProperty("address")
     private GeocodingResponseDetailDTO address;
 
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getLon() {
+		return lon;
+	}
+
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
+
+	public GeocodingResponseDetailDTO getAddress() {
+		return address;
+	}
+
+	public void setAddress(GeocodingResponseDetailDTO address) {
+		this.address = address;
+	}
+    
+    
+
 }

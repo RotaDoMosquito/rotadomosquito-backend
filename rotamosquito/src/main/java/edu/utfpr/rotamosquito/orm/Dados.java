@@ -42,4 +42,54 @@ public class Dados implements Serializable {
         this.fgSituacao = fgSituacao.toLowerCase().startsWith("positivo")?
                 Situacao.POSITIVO : Situacao.NEGATIVO;
     }
+
+	public Long getIdDado() {
+		return idDado;
+	}
+
+	public void setIdDado(Long idDado) {
+		this.idDado = idDado;
+	}
+
+	public LocalDate getDtImportacao() {
+		return dtImportacao;
+	}
+
+	public void setDtImportacao(LocalDate dtImportacao) {
+		this.dtImportacao = dtImportacao;
+	}
+
+	public String getDsEndereco() {
+		return dsEndereco;
+	}
+
+	public void setDsEndereco(String dsEndereco) {
+		this.dsEndereco = dsEndereco;
+	}
+
+	public Situacao getFgSituacao() {
+		return fgSituacao;
+	}
+
+	public void setFgSituacao(Situacao fgSituacao) {
+		this.fgSituacao = fgSituacao;
+	}
+
+	public String getDsLatitude() {
+		return dsLatitude;
+	}
+
+	public void setDsLatitude(String dsLatitude) {
+		this.dsLatitude = dsLatitude;
+	}
+
+	public String getDsLongitude() {
+		return dsLongitude;
+	}
+
+	public void setDsLongitude(String dsLongitude) {
+		this.dsLongitude = dsLongitude;
+	}
+    
+    
 }

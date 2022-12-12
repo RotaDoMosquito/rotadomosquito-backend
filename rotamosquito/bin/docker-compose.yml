@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+    postgres:
+      container_name: rm-postgres
+      image: postgres
+      ports:
+        - "5432:5432"
+      networks:
+        - rm-network
+      environment:
+        POSTGRES_PASSWORD: 123
+        POSTGRES_DB: rotamosquito
+
+    backend:
+      container_name: rm-backend
+      image: rotadomosquito/backend
+      ports:
+        - "8080:8080"
+      networks:
+        - rm-network
+      environment:
+        DATABASE_URL: 'rm-postgres:5432/rotamosquito'
+        DATABASE_USER: 'postgres'
+        DATABASE_PASS: '123'
+
+networks:
+  rm-network:
+    name: rm-network
+    driver: bridge
