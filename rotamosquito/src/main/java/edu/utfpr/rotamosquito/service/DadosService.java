@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -75,11 +76,12 @@ public class DadosService {
     
     /*
      * Verificar se não existe essa data e latitude e longitude nesse
-     * Se exister é true
-     * Se não é false
      */
     private Boolean verificarDados(Dados dados) {
-    	return dadosRepository.carregarDadosMapaFilter(dados.getDsLongitude(), dados.getDsLatitude(), dados.getDtImportacao()).size()>0;
+    	return dadosRepository.
+    			carregarDadosMapaFilter(dados.getDsLongitude()
+    					, dados.getDsLatitude(), dados.getDtImportacao())
+    			.size()>0;
     }
 
     private String loadString(Cell cell){
@@ -102,7 +104,20 @@ public class DadosService {
         try {
             Date date = null;
             if (cell.getCellType().equals(CellType.STRING)){
-                System.out.println(cell.getStringCellValue());
+            	String[] str = cell.getStringCellValue().split("/");
+            	Integer valor = null;
+            	try {
+            		valor = new Integer(str[1].substring(0,2));
+            	}catch (Exception e) {
+            		valor = LocalDate.now().getMonthValue() ;
+				}
+            	try {
+            		
+                    date = new Date(LocalDate.now().getYear(),valor, new Integer(str[0])) ;
+            	}catch(Exception ex) {
+            		System.out.println(cell.getStringCellValue());
+            	}
+            	
             }else {
                 date = cell.getDateCellValue();
             }
