@@ -107,6 +107,7 @@ public class DadosService {
             	String[] str = cell.getStringCellValue().split("/");
             	Integer mes = null;
             	Integer ano = null;
+            	
             	try {
             		mes = new Integer(str[1].substring(0,2));
             		if(str[1].length()>2) {
@@ -115,14 +116,16 @@ public class DadosService {
             	}catch (Exception e) {
             		mes = LocalDate.now().getMonthValue() ;
 				}
-            	if(ano == null)
+            	
+            	if(ano == null) {
 	            	try {
 	            		ano = new Integer(str[2].substring(0,4));
 	            	}catch (Exception e) {
 	            		ano = LocalDate.now().getYear() ;
-					}            	
+					} 
+            	}
+            	
             	try {
-            		
                     date = new Date(ano,mes, new Integer(str[0])) ;
             	}catch(Exception ex) {
             		System.out.println(cell.getStringCellValue());
